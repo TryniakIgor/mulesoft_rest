@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="id" format="json">
+      <types:shape format="weave" example="examples/новый 2.json"><![CDATA[%dw 2.0
+
+type id = Array<{|  id: Number {"typeId": "int"},   name: String,   phone_number: String|}> {"example": "[{\\\"id\\\":0,\\\"name\\\":\\\"criterion1\\\",\\\"phone_number\\\":\\\"88888\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="one" format="json">
+      <types:shape format="weave" example="examples/новый 1-2.json"><![CDATA[%dw 2.0
+
+type one = {|
+  id: Number {"typeId": "int"}, 
+  name: String, 
+  phone_number: String
+|} {"example": "{\\\"id\\\":0,\\\"name\\\":\\\"criterion1\\\",\\\"phone_number\\\":\\\"88888\\\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="int" format="java">
+      <types:shape format="raml"><![CDATA[#%RAML 1.0 DataType
+type: integer]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#5890bc18-106c-4e80-a938-3d535edfdad1">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="id"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#fc20c5c2-000e-4434-bf6c-357b90aebd29">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="one"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

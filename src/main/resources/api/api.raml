@@ -1,0 +1,38 @@
+#%RAML 1.0
+title: <YOUR_TITLE>
+version: v1
+
+/customer:
+ post:
+   responses: 
+        201:
+   body: 
+     application/json:
+      type: object
+      properties:
+         name: string
+         phone_number: number
+      
+ get:
+  responses:
+   200:
+    body:
+     application/json:
+      type: array
+      items:
+       properties:
+        name: string
+        phone_number: number
+        
+ /{customerId}:
+   get:
+     responses: 
+      200:
+        body: 
+         application/json:
+
+
+
+       
+      
+      
